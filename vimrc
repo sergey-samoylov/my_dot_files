@@ -1,11 +1,11 @@
 " Reference chart of values:
-" Ps = 0 -> blinking block 
+" Ps = 0 -> blinking block
 " Ps = 1 -> blinking block (default)
-" Ps = 2 -> steady block 
-" Ps = 3 -> blinking underline 
-" Ps = 4 -> steady underline 
+" Ps = 2 -> steady block
+" Ps = 3 -> blinking underline
+" Ps = 4 -> steady underline
 " Ps = 5 -> blinking bar (xterm)
-" Ps = 6 -> steady bar (xterm) 
+" Ps = 6 -> steady bar (xterm)
 let &t_SI = "\e[6 q"
 let &t_EI = "\e[2 q"
 
@@ -39,10 +39,16 @@ set relativenumber
 nnoremap <F6> :set relativenumber!<CR>
 inoremap <F6> <C-o>:set relativenumber!<CR>
 
-" Toggle line numbers 
+" Toggle line numbers
 set number
 nnoremap <F7> :set number!<CR>
 inoremap <F7> <C-o>:set number!<CR>
+
+" Clipboard paste
+nmap rx :r !xclip -o<CR>
+
+" Remove trailing whitespaces in text
+nmap r<space> :%s/\s\+$//<CR>
 
 " Autoinsert text in html
 autocmd FileType html inoremap ;d <div></div><Esc>FdT>i

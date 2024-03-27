@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+source /home/sam/.config/aliasrc_bash_colors
+
+MusicDir='/Music/Spotify'
+cd $HOME$MusicDir
+
+# fzf -m for multiple selections; press Tab to select more than one 
+songs="$(fzf -m)"
+song_list=$songs
+
+function list_songs() {
+    echo -e "${On_Green} You selected songs: ${Color_Off}"
+    for item in $song_list
+        do
+            echo $item
+        done
+}
+
+for song in $songs
+    do
+        clear
+        list_songs
+        echo; echo 'Now playing:' 
+        echo -e "${Black}${On_Green} $song "
+        mpv $song
+    done
+clear
