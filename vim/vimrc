@@ -1,0 +1,14 @@
+" Source file with settings
+source $HOME/.vim/config/settings.vim
+
+" Source file with maps
+source $HOME/.vim/config/mappings.vim
+
+" Source file with autocommands
+source $HOME/.vim/config/autocommands.vim
+
+" Source file with color scheme
+source $HOME/.vim/config/colorscheme.vim
+
+" Source file with highlights
+source $HOME/.vim/config/highlights.vim
