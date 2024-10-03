@@ -1,0 +1,29 @@
+# ~/.bashrc updated: 2024-10-03
+# Dependencies:
+# ~/.config/aliasrc
+# ~/.config/aliasrc_bash_colors
+# ~/.bash_prompt
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+# aliases new place:
+[ -f "$HOME/.config/aliasrc" ] && source "$HOME/.config/aliasrc"
+
+# new PATH command
+for d in $HOME/.bin/*; do PATH="$d:$PATH"; done
+
+# all colors and background colors
+source $HOME/.config/aliasrc_bash_colors
+
+# change default grep colors
+# ~/Documents/COLORS/grep_colors.txt
+export GREP_COLORS='ms=40;93'
+
+set -o vi
+export VISUAL=vim;
+export EDITOR=vim;
+
+. $HOME/.bash_prompt
+# CTRL + A --> move cursor to prompt start (beginning of the line)
+# CTRL + E --> move cursor to prompt end (end of the line)
