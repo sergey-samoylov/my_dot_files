@@ -24,3 +24,33 @@
 - place "aliasrc" and "aliasrc_bash_colors" into $/HOME/.config
 - change colors and aliases to your likes and needs
 - Enjoy!
+
+## .vim
+
+***It's awesome!***
+
+One day my .vimrc file with all its bells and whistles started to look like
+something, that would need contents menu and idexes.
+
+I challenged my son Yura to create a modular structure.
+
+He came up with a bunch of ideas: imports, theme swapping mechanics, fast and
+easy to use navigation.
+
+In two or three days new .vim was tested and ready. He calls it Sunny Vim.
+
+Have you ever seen .vimrc shorter?
+
+!["best .vimrc file ever"](img/vim_main.png)
+
+I added a few custom highlights for \*.txt files and some minor tweaks.
+
+And now every text file works like a colorful web page. This includes active
+links to other files, page anchors, opening http-links, playing audio and video
+from path.
+
+Oh, yes the contents of such files could be auto-generated on opening!
+
+So I enjoy updated calendar and todo task list. Wow!
+
+!["my actual todo looks almost the same :-)"](img/vim_todo.png)
