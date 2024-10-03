@@ -54,3 +54,9 @@ Oh, yes the contents of such files could be auto-generated on opening!
 So I enjoy updated calendar and todo task list. Wow!
 
 !["my actual todo looks almost the same :-)"](img/vim_todo.png)
+
+### how to:
+
+- check setup, feel free modify if needed
+- copy contents of the folder to your $HOME/.vim
+- and as always - enjoy!
