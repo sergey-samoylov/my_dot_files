@@ -36,11 +36,16 @@ function set_bash_prompt () {
   is_git_repository && set_git_branch || BRANCH=''
     
   # Set the bash prompt variable. There must be 2 lines(!)
-  PS1="${PYTHON_VIRTUALENV}${Orange}\[\$(date +%H:%M)\] ${BBlue}\$PWD${Color_Off} ${BRANCH}
-${PROMPT_SYMBOL} "
+    PS1=""
+    PS1+="\[${PYTHON_VIRTUALENV}\]"
+    PS1+="\[${Orange}\]\\[\$(date +%H:%M)\] \[${BBlue}\]\$PWD \[${BRANCH}\]";
+    PS1+="\n";
+    PS1+="\[${BAqua}\]\[${PROMPT_SYMBOL}\] \[${Color_Off}\]";
+
+    export PS1;
 }
 
-# And now details. Check, how this magic is done:
+# And now details how this magic is done follow:
 # Detect whether the current directory is a git repository.
 function is_git_repository {
   git branch > /dev/null 2>&1
@@ -60,6 +65,7 @@ function set_git_branch {
       *)
         state="${Red}";;
   esac
+
 
   # Set arrow icon based on status against remote.
   case "${git_status}" in
