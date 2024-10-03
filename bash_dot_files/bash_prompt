@@ -40,7 +40,7 @@ function set_bash_prompt () {
 ${PROMPT_SYMBOL} "
 }
 
-# And now details how this magic is done follow:
+# And now details how this magic is done:
 # Detect whether the current directory is a git repository.
 function is_git_repository {
   git branch > /dev/null 2>&1
@@ -60,7 +60,6 @@ function set_git_branch {
       *)
         state="${Red}";;
   esac
-
 
   # Set arrow icon based on status against remote.
   case "${git_status}" in
