@@ -40,7 +40,7 @@ function set_bash_prompt () {
 ${PROMPT_SYMBOL} "
 }
 
-# And now details how this magic is done:
+# And now details. Check, how this magic is done:
 # Detect whether the current directory is a git repository.
 function is_git_repository {
   git branch > /dev/null 2>&1
