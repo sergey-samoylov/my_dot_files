@@ -36,13 +36,19 @@ function set_git_branch {
   git_status="$(git status 2> /dev/null)"
 
   # Set color based on clean/staged/dirty.
-  if [[ ${git_status} =~ "working tree clean" ]]; then
-    state="${Green}"
-  elif [[ ${git_status} =~ "Changes to be committed" ]]; then
-    state="${Yellow}"
-  else
-    state="${Red}"
-  fi
+  case "${git_status}" in
+      *"working tree clean"*) state="${Green}";;
+      *"Changes to be committed"*) state="${Yellow}";;
+      *) state="${Red}";;
+  esac
+
+#  if [[ ${git_status} =~ "working tree clean" ]]; then
+#    state="${Green}"
+#  elif [[ ${git_status} =~ "Changes to be committed" ]]; then
+#    state="${Yellow}"
+#  else
+#    state="${Red}"
+#  fi
 
   # Set arrow icon based on status against remote.
   remote_pattern="# Your branch is (ahead|behind)+ "
