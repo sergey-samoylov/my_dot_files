@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+# Gets text from latest screenshot or photo in ~/Pictures
+#
+# Depends on:
+#   - tesseract
+#       to install tesseract use sudo apt install tesseract-ocr-rus
+#       (Eng installs by default)
+# Prerequisites:
+#   - ~/Pictures dir [with other dirs]? (filled with screenshots or photos)
+#   - ~/tmp dir (need a place to save screenshot.txt)
+#       mkdir -p ~/tmp
+
+# SETTINGS:
+src_dir="$HOME/Pictures/"
+output_file="$HOME/tmp/screenshot.txt"
+lang="unknown"
+
+# MAIN INTERFACE:
+function main() {
+    get_latest_img
+    choose_language
+    get_text
+}
+
+# FUNCS, THAT DO THE MAGIC:
+function get_latest_img() {
+    latest_scr=$(find $src_dir -type f -printf "%T@ %p\n" | sort -n | cut -d' ' -f 2- | tail -n 1)
+}
+
+function choose_language() {
+    while [[ $lang != "eng" && $lang != "rus" ]]
+        do
+            read -p "Choose target's language [eng or rus]: " language_choice
+            # this lowercases letters in var language_choice
+            lang=${language_choice,,}
+
+            case $lang in
+                *eng*)
+                    lang="eng";;
+                *rus*)
+                    lang="rus";;
+                *)
+                    echo "You must choose either 'eng' or 'rus'"
+            esac
+        done
+}
+
+# text will be in terminal, in output_file and in your clipboard
+function get_text() {
+    tesseract -l $lang $latest_scr stdout | tee $output_file >(wl-copy)
+}
+
+main
+
+# show full path to the latest screenshot:
+# echo ${latest_scr}
+
+# show the latest screenshot:
+# sxiv ${latest_scr}

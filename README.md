@@ -2,8 +2,8 @@
 
 **Update:**
 
+- new screenshot to text app in /utils
 - new structure for my dot files (each group in its folder)
-- switched back to bash from zsh
 - new prompt structure in .bashrc
 
 ## .bashrc
