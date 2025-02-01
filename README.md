@@ -2,6 +2,8 @@
 
 **Update:**
 
+just checking
+
 - new screenshot to text app in /utils
 - new structure for my dot files (each group in its folder)
 - new prompt structure in .bashrc
