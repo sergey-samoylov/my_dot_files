@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+git_prompt() {
+    # Get current branch name
+    local branch
+    branch="$(git rev-parse --abbrev-ref HEAD 2>/dev/null)" || return
+
+    # Truncate if necessary
+    local branch_truncated="${branch:0:30}"
+    if (( ${#branch} > ${#branch_truncated} )); then
+        branch="${branch_truncated}..."
+    fi
+
+    # Fetch latest remote info silently
+    git fetch --quiet 2>/dev/null
+
+    local local_ref remote_ref base_ref
+    local_ref="$(git rev-parse @ 2>/dev/null)"
+    remote_ref="$(git rev-parse @{u} 2>/dev/null)"
+    base_ref="$(git merge-base @ @{u} 2>/dev/null)"
+
+    local color
+
+    if [[ "$local_ref" == "$remote_ref" ]]; then
+        # Local and remote are equal: check working tree
+        if [[ -n "$(git status --porcelain 2>/dev/null)" ]]; then
+            color="$Purple"  # local dirty
+        else
+            color="$Green"   # clean and synced
+        fi
+    elif [[ "$local_ref" == "$base_ref" ]]; then
+        color="$Red"         # behind
+    elif [[ "$remote_ref" == "$base_ref" ]]; then
+        color="$Blue"        # ahead
+    else
+        color="$Red"         # diverged; treat as behind
+    fi
+
+    echo -e "${Color_Off}on ${color}${branch}"
+}
+

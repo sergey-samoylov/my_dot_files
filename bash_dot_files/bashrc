@@ -1,8 +1,8 @@
-# ~/.bashrc updated: 2024-10-03
+# ~/.bashrc updated: 2025-04-22 
 # Dependencies:
 # ~/.config/aliasrc
 # ~/.config/aliasrc_bash_colors
-# ~/.bash_prompt
+# ~/.config/bashrc_functions
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
@@ -24,6 +24,27 @@ set -o vi
 export VISUAL=vim;
 export EDITOR=vim;
 
-. $HOME/.bash_prompt
+# make Python REPL rich and pretty
+export PYTHONSTARTUP=$HOME/.pythonstartup
+
+[[ -f "$HOME/.config/bashrc_functions" ]] && source "$HOME/.config/bashrc_functions"
+
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+
+PS1=""
+# Add venv name and a space only if VIRTUAL_ENV is set
+PS1+="\[${Green}\]\$( [ -n \"\$VIRTUAL_ENV\" ] && echo \"\${VIRTUAL_ENV##*/} \" )";
+PS1+="\[${Orange}\]\A \[${Yellow}\]\d \[${BBlue}\]\w \$(git_prompt)";
+PS1+="\n";
+PS1+="\[${BAqua}\]> \[${Color_Off}\]";
+export PS1;
+
+export LANG=en_US.UTF-8
+export LANGUAGE=en_US
+# . $HOME/.bash_prompt # some artefacts, when history scrolling; switched to
+# old setup
+#
 # CTRL + A --> move cursor to prompt start (beginning of the line)
 # CTRL + E --> move cursor to prompt end (end of the line)
+
+. "$HOME/.local/bin/env"
